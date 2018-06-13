@@ -1,5 +1,40 @@
+/* Create classes and subclasses 
+*  Characters
+*  Enemies extends Characters
+*  Player extends Characters
+*/
+
+class Characters {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    };
+
+    update(dt) {};
+
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    };
+}
+
+class Enemy extends Characters {
+    constructor(x, y) {
+        super(x, y);
+        this.sprite = 'images/enemy-bug.png';
+        allEnemies.push(this);
+    }
+}
+
+class Player extends Characters {
+    constructor(x, y) {
+        super(x, y);
+        this.sprite = 'images/char-horn-girl.png';
+    };
+}
+
+
 // Enemies our player must avoid
-var Enemy = function() {
+/*var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -19,7 +54,7 @@ Enemy.prototype.update = function(dt) {
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+};*/
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -28,7 +63,14 @@ Enemy.prototype.render = function() {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
+
+const allEnemies = [];
+enemy1 = new Enemy(3, 3);
+enemy2 = new Enemy(17, 4);
+enemy3 = new Enemy(1, 85);
+
 // Place the player object in a variable called player
+//const player = new Player(3, 3, 0); 
 
 
 
@@ -42,5 +84,5 @@ document.addEventListener('keyup', function(e) {
         40: 'down'
     };
 
-    player.handleInput(allowedKeys[e.keyCode]);
+  //  player.handleInput(allowedKeys[e.keyCode]);
 });
