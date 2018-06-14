@@ -30,6 +30,8 @@ class Player extends Characters {
         super(x, y);
         this.sprite = 'images/char-horn-girl.png';
     };
+
+    
 }
 
 
@@ -65,12 +67,12 @@ Enemy.prototype.render = function() {
 // Place all enemy objects in an array called allEnemies
 
 const allEnemies = [];
-enemy1 = new Enemy(3, 3);
-enemy2 = new Enemy(17, 4);
-enemy3 = new Enemy(1, 85);
+const enemy1 = new Enemy(50, 63);
+const enemy2 = new Enemy(50, 147);
+const enemy3 = new Enemy(50, 230);
 
 // Place the player object in a variable called player
-//const player = new Player(3, 3, 0); 
+const player = new Player(205, 400); 
 
 
 
@@ -84,5 +86,5 @@ document.addEventListener('keyup', function(e) {
         40: 'down'
     };
 
-  //  player.handleInput(allowedKeys[e.keyCode]);
+    player.handleInput(allowedKeys[e.keyCode]);
 });
