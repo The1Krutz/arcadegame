@@ -15,23 +15,58 @@ class Characters {
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     };
+
 }
 
 class Enemy extends Characters {
-    constructor(x, y) {
+    constructor(x = 50, y = 63, speedX = 0, speedY = 0) {
         super(x, y);
         this.sprite = 'images/enemy-bug.png';
+        this.speedX = speedX;
+        this.speedY = speedY;
         allEnemies.push(this);
     }
 }
 
 class Player extends Characters {
-    constructor(x, y) {
+    constructor(x = 205, y = 400) {
         super(x, y);
         this.sprite = 'images/char-horn-girl.png';
     };
 
-    
+    handleInput(allowedKeys) {
+        switch(allowedKeys) {
+            case "left": 
+                this.x -= 100;
+                break;
+            case "up":
+                this.y -= 84;
+                break;
+            case "right": 
+                this.x += 100;
+                break; 
+            case "down": 
+                this.y += 84;
+                break;
+        }
+    }
+
+    update() {
+        if (this.x < 5) {
+        this.x = 405;
+        }
+        else if (this.x > 405) {
+            this.x = 5;
+        }
+
+       if (this.y < 0) {
+           // reset();
+           this.y = 400;
+        }
+        else if (this.y > 400) {
+            this.y = 400;
+        }
+    }
 }
 
 
@@ -70,6 +105,7 @@ const allEnemies = [];
 const enemy1 = new Enemy(50, 63);
 const enemy2 = new Enemy(50, 147);
 const enemy3 = new Enemy(50, 230);
+
 
 // Place the player object in a variable called player
 const player = new Player(205, 400); 
