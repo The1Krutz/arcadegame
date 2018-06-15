@@ -1,3 +1,4 @@
+//Character class
 class Characters {
     constructor(x, y) {
         this.x = x;
@@ -7,9 +8,9 @@ class Characters {
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     };
-
 }
 
+//Enemy class
 class Enemy extends Characters {
     constructor(x = 50, y = 63, speed) {
         super(x, y);
@@ -28,6 +29,7 @@ class Enemy extends Characters {
     };
 }
 
+//Player class 
 class Player extends Characters {
     constructor(x = 205, y = 400) {
         super(x, y);
@@ -55,6 +57,7 @@ class Player extends Characters {
 
 //boundaries for the player object to not move off board
 //player enters other side of screen classic arcade style
+//checks for collisions and if player won game
     update() {
         if (this.x < 5) {
             this.x = 405;
@@ -70,53 +73,10 @@ class Player extends Characters {
             this.y = 400;
         }
 
+        checkCollisions();
         winGame();
     }
 }
-
-
-const resetPlayer = () => {
-  player.x = 205;
-  player.y = 400;
-}
-
-const win = () => {
-    alert("You've won! Great job dodging those bugs!");
-}
-
-function winGame() {
-    setTimeout(function(){
-        if (player.y === 0) {
-            win();
-            resetPlayer();
-        }
-    }, 200);
-}
-
-const checkWin = () => {
-  (player.y === -10) ? winner() : false;
-}
-
-
-// Enemies our player must avoid
-/*var Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
-};
-
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-};*/
-
-
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -134,6 +94,44 @@ const enemy6 = new Enemy(-300, 231, 25)
 // Place the player object in a variable called player
 const player = new Player(205, 400); 
 
+
+//return player to starting point
+const resetPlayer = () => {
+  player.x = 205;
+  player.y = 400;
+}
+
+//check for collision
+const checkCollisions = () => {
+        for (enemy of allEnemies) {
+            let playerWidth = 90;
+            let enemyWidth = 90;
+            let playerHeight = 90;
+            let enemyHeight = 75;
+            if (enemy.x < player.x + playerWidth &&
+                enemy.x + enemyWidth > player.x &&
+                enemy.y < player.y + playerHeight &&
+                enemy.y + enemyHeight > player.y) {
+                resetPlayer();
+                }
+        }
+    }
+
+
+//alert when player reaches water and wins
+const win = () => {
+    alert("You've won! Great job dodging those bugs!");
+}
+
+//checks if player won the game
+function winGame() {
+    setTimeout(function(){
+        if (player.y === 0) {
+            win();
+            resetPlayer();
+        }
+    }, 250);
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
