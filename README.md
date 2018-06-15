@@ -1,6 +1,26 @@
-frontend-nanodegree-arcade-game
+Udacity Front End Nanodegree Aracde Game
 ===============================
+#Game Objective
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+Move the character from the grass to the water, avoiding the side scrolling bugs. 
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+##How to Play
+
+Players use the keyboard arrow keys (up, down, left, right) to move the character on the screen. The character will move from square to square. If a bug is occupying the same square that a user is, it will be considered a collision between the two and the character will be sent back to the grassy area to try to get to the water again. 
+
+##How to Win
+
+When the player successfully navigates the obstacles and reaches the water, and alert will appear on the screen declaring victory! Close the alert to begin a new game.
+
+###To Do
+
+* Randomize generation of enemies within array
+* Randomize the speed of enemies
+* Allow for character selection
+* Score board
+* Animation upon winning
+* Level presets: easy, medium, and hard
+
+###Credits
+
+Udacity.com for the starter code, graphics
